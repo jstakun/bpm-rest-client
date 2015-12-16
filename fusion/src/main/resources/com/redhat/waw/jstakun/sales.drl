@@ -1,0 +1,36 @@
+//created on: May 21, 2014
+package com.redhat.waw.jstakun
+
+import com.redhat.waw.jstakun.Sale;
+
+declare Sale
+   @role(event)
+end   
+
+rule "StoreOne has passed its Sales Record"
+
+    when
+        //conditions
+        
+        Number ($totalSalesAmount : intValue, intValue > 1000)
+        from accumulate (Sale($amount : amount, $quantity: quantity) from entry-point StoreOne, sum ($amount * $quantity))
+        
+    then
+        //actions
+        System.out.println("StoreOne has passed its Sales Record");
+         
+end
+
+rule "StoreTwo has passed its Sales Record"
+
+    when
+        //conditions
+        
+        Number ($totalSalesAmount : intValue, intValue > 1000)
+        from accumulate (Sale ($amount : amount, $quantity: quantity) from entry-point StoreTwo, sum ($amount * $quantity))
+        
+    then
+        //actions
+        System.out.println("StoreTwo has passed its Sales Record");
+         
+end

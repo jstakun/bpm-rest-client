@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kmodule xmlns="http://jboss.org/kie/6.0.0/kmodule">
+   <kbase name="org.kie.kbase1" equalsBehavior="equality" eventProcessingMode="stream"/>
+   <kbase name="org.kie.kbase2" equalsBehavior="equality" eventProcessingMode="cloud"/>
+</kmodule>

@@ -1,0 +1,45 @@
+//created on: May 22, 2014
+package com.redhat.waw.jstakun
+
+import com.redhat.waw.jstakun.Sale;
+
+declare Sale
+   @role(event)
+   @timestamp(date)
+end  
+
+rule "Compulsive Buyer"
+
+    when
+        //conditions
+        $s : Sale( $c: customer) from entry-point StoreOne
+        Sale (this before[1ms,1s] $s, customer == $c) from entry-point StoreOne
+    then
+        //actions
+        System.out.println("Customer " + $s.getCustomer() + " is a Compulsive Buyer");
+end
+
+rule "Regular Buyer"
+
+    when
+        //conditions
+        $s : Sale( $c: customer) from entry-point StoreOne
+        Sale (this before[1s,10s] $s, customer == $c) from entry-point StoreOne
+    then
+        //actions
+        System.out.println("Customer " + $s.getCustomer() + " is a Regular Buyer");
+end
+
+
+rule "Slow Buyer"
+
+    when
+        //conditions
+        $s : Sale( $c: customer) from entry-point StoreOne
+        Sale (this after[10s] $s, customer == $c) from entry-point StoreOne
+    then
+        //actions
+        System.out.println("Customer " + $s.getCustomer() + " is a Slow Buyer");
+end
+
+
