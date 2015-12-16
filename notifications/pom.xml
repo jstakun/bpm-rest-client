@@ -3,11 +3,21 @@
   <groupId>org.acme.insurance</groupId>
   <artifactId>notifications</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <dependencyManagement>
+    	<dependencies>
+        	<dependency>
+           		<groupId>org.jboss.bom.brms</groupId>
+           		<artifactId>jboss-javaee-6.0-with-brms-bpmsuite</artifactId>
+           		<version>6.2.0.GA-redhat-1</version>
+           		<type>pom</type>
+           		<scope>import</scope>
+        	</dependency>
+    	</dependencies>
+  </dependencyManagement> 
   <dependencies>
   	<dependency>
   		<groupId>org.kie</groupId>
   		<artifactId>kie-api</artifactId>
-  		<version>6.0.0.Final</version>
-  	</dependency>
+   	</dependency>
   </dependencies>
 </project>
